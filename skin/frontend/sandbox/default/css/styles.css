@@ -392,7 +392,7 @@ html {
 }
 
 body {
-  background: red;
+  background: red; /* just added this 9990 */
   color: #000000;
   line-height: 1;
 }
