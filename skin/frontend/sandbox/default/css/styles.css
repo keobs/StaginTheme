@@ -3182,8 +3182,8 @@ body {
  * Language switcher + welcome message
  * ============================================ */
 .header-language-background {
-  padding: 10px;
-  background-color: #3399cc;
+	padding: 5px;
+	background-color: #adc148;
   text-transform: uppercase;
 }
 .header-language-background .header-language-container {
