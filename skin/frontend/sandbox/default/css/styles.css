@@ -3238,14 +3238,22 @@ body {
 /* ============================================ *
  * Logo
  * ============================================ */
+ .logoContainer {
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 100px;
+    /* clear: both; */
+    /* float: none; */
+}
+
 .logo {
   display: block;
-  float: left;
-  width: 65%;
+  width: 100%;
   min-width: 100px;
   min-height: 44px;
   text-align: center;
   padding: 10px;
+  margin: 0 auto;
 }
 .logo img {
   max-width: 100%;
