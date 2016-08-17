@@ -10605,3 +10605,11 @@ div.calendar table td.button {
   color: inherit;
   text-transform: none;
 }
+
+
+/* New SandBox Styles */
+
+.page-title.category-title {float: left;  width: 20%;}
+.category-products { clear: both; padding: 0.5em 0 0 0;}
+.catBannerImg {float: right;    width: 75%;}
+.catBannerImg img { max-width: 100%;}
