@@ -10613,3 +10613,10 @@ div.calendar table td.button {
 .category-products { clear: both; padding: 0.5em 0 0 0;}
 .catBannerImg {float: right;    width: 75%;}
 .catBannerImg img { max-width: 100%;}
+
+.breadcrumbs {background: #f0f0f0; padding: 3px 0 2px 5px;}
+.breadcrumbs li {font-size: 10px;}
+
+@media only screen and (min-width: 480px) {
+    .main-container, .footer-container {   padding: 16px 30px 30px 30px;}
+}
