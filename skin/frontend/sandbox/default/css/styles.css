@@ -10610,7 +10610,7 @@ div.calendar table td.button {
 /* New SandBox Styles */
 
 .page-title.category-title {float: left;  width: 22.333%;}
-.category-products { clear: both; padding: 0.5em 0 0 0;}
+.category-products { clear: both; padding-top: 0;}
 .catBannerImg {float: right;    width: 75%;}
 .catBannerImg img { max-width: 100%;}
 .category-description.std {font-size: 12px;} 
