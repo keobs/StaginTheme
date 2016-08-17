@@ -10621,3 +10621,7 @@ div.calendar table td.button {
 @media only screen and (min-width: 480px) {
     .main-container, .footer-container {   padding: 16px 30px 30px 30px;}
 }
+
+.products-grid .product-image img {width: 63%; height: auto;  margin: 0 auto;}
+.product-image {border: none;}
+ul.products-grid li.item {border: solid 1px #f0f0f0;}
