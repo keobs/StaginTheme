@@ -10625,3 +10625,9 @@ div.calendar table td.button {
 .products-grid .product-image img {width: 63%; height: auto;  margin: 0 auto;}
 .product-image {border: none;}
 ul.products-grid li.item {border: solid 1px #f0f0f0;}
+
+
+
+/* One Step Checkout */
+
+h1.h1_opc {text-align: center; border: none;}
