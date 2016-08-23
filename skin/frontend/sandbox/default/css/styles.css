@@ -10635,4 +10635,6 @@ ul.products-grid li.item {border: solid 1px #f0f0f0;}
 h1.h1_opc {text-align: center; border: none;}
 
 
-/
+/* samples page */
+div#samplescontainer ul.tabs.tabHeader.toggle_display {margin-bottom: 0; background: #fff;}
+
