@@ -10608,6 +10608,8 @@ div.calendar table td.button {
 
 
 /* New SandBox Styles */
+/* css v2 */
+p.welcome-msg {color:#fff; font-weight:bold; font-size:12px; letter-spacing:1px;} 
 
 .page-title.category-title {float: left;  width: 22.333%;}
 .category-products { clear: both; padding-top: 0;}
@@ -10631,3 +10633,6 @@ ul.products-grid li.item {border: solid 1px #f0f0f0;}
 /* One Step Checkout */
 
 h1.h1_opc {text-align: center; border: none;}
+
+
+/
