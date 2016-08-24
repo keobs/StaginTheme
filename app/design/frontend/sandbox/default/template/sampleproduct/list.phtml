@@ -1,0 +1,306 @@
+<?php
+/* get all sample category */
+$allowsamplecount = $this->getAllowSampleCount();
+$samplesproductInCart = $this->getSamplesProductInCart();
+$disableCheckBox = FALSE;
+if($allowsamplecount<=0)
+{
+    $disableCheckBox = TRUE;
+}
+
+$sampleCat = $this->getTabCategory();
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="tabs-7" id="samplescontainer">
+    <ul class="tabs">
+        <?php
+            foreach ($sampleCat as $catid => $catname) 
+            {
+                ?>
+                    <li><a href="#tab<?php echo $catid ?>"><?php echo $catname; ?></a></li>
+                <?php
+
+            }
+        ?>
+    </ul> 
+    <section class="tab_content_wrapper">
+        <?php
+            foreach ($sampleCat as $catid => $catname) 
+            {
+                ?>
+                    <article class="tab_content" id="tab<?php echo $catid; ?>">
+                    <?php
+                        $_productCollection=$this->getLoadedProductCollection($catid);
+//                        echo '<pre>';
+//                        print_r($_productCollection->getData());
+//                        die();
+                        $_helper = $this->helper('catalog/output');
+                    ?>
+                       <?php if(!$_productCollection->count()): ?>
+                                <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+                        <?php else: ?>
+                                    <div class="category-products">
+                                        <?php $_collectionSize = $_productCollection->count() ?>
+                                        <?php $_columnCount = $this->getColumnCount(); ?>
+                                        <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+                                            <?php $i=0; foreach ($_productCollection as $productModel): ?>
+                                            <?php
+                                                $_product = Mage::getModel('catalog/product')->load($productModel->getId())
+                                            ?>
+                                                <?php /*if ($i++%$_columnCount==0): ?>
+                                                <?php endif*/ ?>
+                                                <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                                        <?php $_imgSize = 210; ?>
+                                                        <img id="product-collection-image-<?php echo $_product->getId(); ?>"
+                                                             src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>"
+                                                             alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                                    </a>
+                                                    <div class="product-info">
+                                                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+
+                                                        <?php echo $this->getPriceHtml($_product, true) ?>
+                                                        <?php if($_product->getRatingSummary()): ?>
+                                                        <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                                        <?php endif; ?>
+                                                        <div class="actions">
+                                                            <?php if($_product->isSaleable() && !$_product->canConfigure()): ?>
+<?php                                                   /*             <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="submitCart('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                                                      */  ?>
+                                                            <input type="checkbox" id="product_catalog_<?php echo $_product->getId(); ?>" <?php if(in_array($_product->getId(), $samplesproductInCart)): echo "checked='checked'"; endif;?><?php if($disableCheckBox && !in_array($_product->getId(), $samplesproductInCart)): echo "disabled='disabled'"; endif; ?>  class="choose_sample" ref="<?php echo $_product->getId(); ?>">
+                                                                <input type="hidden" value="<?php echo $this->getAddToCartUrl($_product) ?>">
+                                                                <input type="hidden" value="<?php echo str_replace("add", "ajaxlistDelete", $this->getAddToCartUrl($_product)) ?>">
+                                                            <?php elseif($_product->isSaleable()): ?>
+                                                                <a title="<?php echo $this->__('View Details') ?>" class="button" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('View Details') ?></a>
+                                                            <?php else: ?>
+                                                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                                            <?php endif; ?>
+                                                            <ul class="add-to-links">
+                                                                <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                                                    <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                                                <?php endif; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <?php /*if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+                                                <?php endif*/ ?>
+                                            <?php endforeach ?>
+                                        </ul>
+    <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+                                    </div>
+<?php endif; ?>
+                    
+                    </article>
+                <?php
+
+            }
+        ?>
+        
+    </section>
+</div>
+<script type="text/javascript">
+// initializing jQueryTab plugin 
+jQuery(window).load(function(){
+    jQuery('.tabs-7').jQueryTab({
+    initialTab: 2,
+    tabInTransition: 'fadeIn',
+    tabOutTransition: 'fadeOut',
+    cookieName: 'active-tab-7'
+    
+});
+changeUrl();
+
+var allowsamples = <?php echo $this->getAllowSampleCount()?>;
+var sampleincart = <?php echo $this->getSamplesInCart() ?>;
+
+    jQuery('#samplescontainer :checkbox').click(function()
+    {
+    // code goes here
+          
+        var checkedsample = jQuery('#samplescontainer input[type="checkbox"]:checked').length;
+        if(checkedsample <= parseInt(allowsamples+sampleincart))
+        {
+            setoverLay();
+            var enableflag = false;
+            if(this.checked)
+            {
+                action = jQuery(this).next().val();
+            }
+            else
+            {
+                if(parseInt(checkedsample+1) == parseInt(allowsamples+sampleincart))
+                {
+                  enableflag = true;
+                }
+                action = jQuery(this).next().next().val();
+            }
+            var actionurl = action.replace("checkout", "sampleproduct"); 
+            jQuery.ajax( {
+                  url:actionurl,
+                  data: {isAjax: 1,checkedsamples:checkedsample} ,
+                  dataType: 'json',
+                  success:function(data) 
+                  {
+                      if(data.status=="ERROR")
+                      {
+                          window.location.reload(true);
+                      }
+                      else if(jQuery('#header-cart'))
+                      {
+                         jQuery('#header-cart').html(data.minicart);
+                         jQuery('#header-cart').prev("a").find(".count").html(data.qty);
+                         if(checkedsample >= parseInt(allowsamples+sampleincart))
+                         {
+                             /* code for disable checkbox when allowsamples is maximum */
+                             jQuery('#samplescontainer :checkbox').each(function(ele,index)
+                             {
+                                if(!this.checked)
+                                {
+                                    jQuery(this).attr("disabled","disabled");
+                                }
+                             });
+                             sampleMax();
+                         }
+                         if(enableflag)
+                         {
+                           jQuery('#samplescontainer :checkbox').each(function(ele,index)
+                             {
+                                if(!this.checked)
+                                {
+                                    jQuery(this).removeAttr("disabled");
+                                }
+                             });
+                         }
+                         if(data.allowsample)
+                         {
+                             allowsamples = data.allowsample;
+                             sampleincart = data.sampleincart;
+                            
+                         }
+                         
+                      }
+                      
+                     removeOverlay();
+                  }
+               });
+        }
+
+    });
+});
+function submitCart(action)
+{
+        var actionurl = action.replace("checkout", "sampleproduct"); 
+       
+        jQuery.ajax( {
+                  url:actionurl,
+                  data: {isAjax: 1} ,
+                  dataType: 'json',
+                  success:function(data) 
+                  {
+                      
+                      if(jQuery('.header-minicart'))
+                      {
+                         jQuery('.header-minicart').html(data.minicart);
+                         jQuery('#header-cart').prev("a").find(".count").html(data.qty);
+                      }
+                  }
+               });
+    
+}
+function setoverLay()
+{
+
+         var mediaurl = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>';
+            var lightBoxBackground = new Element("div",{"id":"lightBoxBackground"})
+                    lightBoxBackground.setStyle({"background": "none repeat scroll 0 0 #ffffff",
+                                                 "height": "100%",
+                                                 "left": 0,
+                                                 "opacity":" 0.5",
+                                                 "position": "fixed",
+                                                 "top": 0,
+                                                 "width": "100%",
+                                                 "zIndex":"2147483647"
+                                               });
+                    var bodyTag = document.getElementsByTagName("body");
+                    bodyTag[0].insert({"bottom":lightBoxBackground});
+                    bodyTag[0].setStyle({"position":"relative"});
+                          bodyTag[0].insert({"bottom":'<div id="sampleproduct" style="position: fixed;z-index:2147483647; background: none repeat scroll 0% 0% #FAF9F7; left: 37%; border: 4px solid #E9E9E9; padding: 1% 1%; width: 27%; top: 50%; height: auto; text-align: center;">\n\
+                                            <div id="onepageloader">\n\
+                                                <img src="'+mediaurl+'sampleproduct/images/ajax-loader.gif" title="">\n\
+                                                <span style="display:block">Please Wait....</span> \n\
+                                            </div>    \n\
+                                                 </div>'});
+
+}
+function removeOverlay()
+{
+
+        $('lightBoxBackground').remove();
+        $('sampleproduct').remove();
+
+}
+
+
+
+function changeUrl()
+{
+    if($("cart-sidebar")!=null)
+    {
+        $("cart-sidebar").select('input').each(function(ele,index)
+        {
+            action = ele.readAttribute('data-link');
+            var actionurl = action.replace("checkout", "sampleproduct"); 
+            ele.writeAttribute('data-link',actionurl);
+        });
+        $("cart-sidebar").select('.remove').each(function(ele,index)
+        {
+            action = ele.readAttribute('href');
+            var actionurl = action.replace("checkout", "sampleproduct"); 
+            ele.writeAttribute('href',actionurl);
+        });
+    }
+    
+}
+function sampleMax()
+{
+
+            var lightBoxBackground = new Element("div",{"id":"lightBoxBackground"})
+                    lightBoxBackground.setStyle({"background": "none repeat scroll 0 0 #ffffff",
+                                                 "height": "100%",
+                                                 "left": 0,
+                                                 "opacity":" 0.5",
+                                                 "position": "fixed",
+                                                 "top": 0,
+                                                 "width": "100%",
+                                                 "zIndex":"2147483647"
+                                               });
+                    var bodyTag = document.getElementsByTagName("body");
+                    bodyTag[0].insert({"bottom":lightBoxBackground});
+                    bodyTag[0].setStyle({"position":"relative"});
+                          bodyTag[0].insert({"bottom":'<div style="position: fixed;z-index:2147483647; background: none repeat scroll 0% 0% #FAF9F7; left: 37%; border: 4px solid #E9E9E9; padding: 1% 1%; width: 27%; top: 50%; height: auto; text-align: center;" id="sampleproduct"><div class="popin_border"><section><p class="title_popin color_11 text_transform_1 fileds_space">Samples selection</p><div class="clearfix"><div class="max-samples-text fftnm">You have selected the maximum number of samples.</div></div><div class="clearfix buttons-centered"><a href="#" class="grey_arrow_left_button float_1" onclick="removeOverlay();" id="cancel">Cancel<span class="white_small_arrow_right"></span></a><a href="<?php echo $this->getUrl('checkout/onepage'); ?>" class="grey_arrow_left_button float_1" id="continue">Continue<span class="white_small_arrow_right"></span></a></div></section</div></div>'});
+
+}
+</script>
+<style type="text/css">
+.grey_arrow_left_button.float_1 {
+  background-color: #3399cc;
+  padding: 6px 26px;
+  color: #ffffff;
+}
+#cancel
+{
+    margin-right: 5%;
+}
+.buttons-centered
+{
+    padding-top: 10px;
+    text-align: center;
+}
+</style>
+
+
+
+
+
+
