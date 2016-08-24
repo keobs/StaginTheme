@@ -10640,5 +10640,6 @@ div#samplescontainer ul.tabs.tabHeader.toggle_display {margin-bottom: 0; backgro
 article#tab16 {background: #ffffff;}
 ul.products-grid li.item {   border: solid 1px #ccc;}
 ul.checkout-types.top li:nth-child(1), li.method-sampleproduct {display: none;}
+article#tab16 div ul li img {   margin: 0 auto 1em auto; max-width: 75%; padding: 0.5em;}
 
 
