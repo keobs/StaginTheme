@@ -10645,3 +10645,9 @@ article#tab16 div ul li img {   margin: 0 auto 1em auto; max-width: 75%; padding
 /* footer divider */
 
 .footer-divider {background: #ececec;min-height: 56px;}
+
+/* Homepage Layout */
+div#hpContent, .hpSlider, .hpSlider img, div#hpMiddleRow {width: 100%;}
+
+.block1 {float: left; margin: 0 7.4% 0 0; width: 27%;}
+.block1.lastOne.noMargin {margin: 0;}
