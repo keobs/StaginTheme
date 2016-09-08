@@ -10649,5 +10649,5 @@ article#tab16 div ul li img {   margin: 0 auto 1em auto; max-width: 75%; padding
 /* Homepage Layout */
 #hpContent, .hpSlider, .hpSlider img, div#hpMiddleRow {width: 100%;}
 #hpMiddleRow {margin: 3em auto 1em auto;}
-.block1 {float: left; margin: 0 8% 0 0; width: 28%;}
+.block1 {float: left; margin: 0 8% 0 0; width: 28%;} 
 .block1.lastOne.noMargin {margin: 0;}
