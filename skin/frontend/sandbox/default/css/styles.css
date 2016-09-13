@@ -10652,5 +10652,24 @@ article#tab16 div ul li img {   margin: 0 auto 1em auto; max-width: 75%; padding
 .block1 {float: left; margin: 0 8% 0 0; width: 28%;} 
 .block1.lastOne.noMargin {margin: 0;}
 
+/* Checkout Button */
 
+#onestepcheckout_orderform button.btn-checkout {
+    border: 0;
+    margin-bottom: 13px;
+    padding: 0 103px;
+    background: #3399cc;
+    color: #FFFFFF;
+    font: bold 16px/32px Arial,Helvetica,sans-serif;
+    height: 49px !important;
+    text-transform: uppercase;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    filter: progid:DXImageTransform.Microsoft.dropShadow(color=#555, offX=0, offY=0, positive=true);
+    border-radius: 2px;
+}
 
+#coupon-cancel, coupon-apply {
+    border-left: solid 2px #fff;
+}
