@@ -73,11 +73,10 @@
 
 <!-- Hide 0.00 sale price -->
 <script type="text/javascript">
-//<![CDATA[
-if(jQuery('.igo_product_sale_price_value').text() == '$0.00'){
-    jQuery(".igo_product_sale_price_value").hide();
-}
-//]]>
+jQuery(document).ready(function () {
+   jQuery(".igo_product_sale_price_value:contains('$0.00')").hide();
+});
 </script>
+
 <!-- cms block for pi code -->
 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('custom_block_id')->toHtml() ?>
