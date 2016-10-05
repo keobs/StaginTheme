@@ -71,5 +71,11 @@
     <?php echo $this->getProductListHtml() ?>
 <?php endif; ?>
 
+<!-- Hide 0.00 sale price -->
+<script>
+$(document).ready(function() {
+  $("div.igo_product_sale_price span:contains('$0.00')").closest("span").hide();
+});
+</script>
 <!-- cms block for pi code -->
 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('custom_block_id')->toHtml() ?>
