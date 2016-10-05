@@ -71,15 +71,7 @@
     <?php echo $this->getProductListHtml() ?>
 <?php endif; ?>
 
-<!-- needed js to clean up prices -->
-<script type="text/javascript">
-jQuery(document).ready(function () {
-    // if sale price is $0.00 hide it 
-    jQuery(".igo_product_sale_price_value:contains('$0.00')").hide();
-    }
-});
-</script>
-
+<!-- Hide 0.00 sale price -->
 <script type="text/javascript">
 jQuery(document).ready(function () {
  // if prices are the same add class to hide sale price
@@ -88,6 +80,14 @@ jQuery(document).ready(function () {
     }
 });
 </script>
+ 
+<script type="text/javascript">
+jQuery(document).ready(function () {
+   jQuery(".igo_product_sale_price_value:contains('$0.00')").hide();
+});
+</script>
+
+
 
 <!-- cms block for pi code -->
 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('catalog_pi_recommend')->toHtml() ?>
