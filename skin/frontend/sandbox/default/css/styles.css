@@ -10673,3 +10673,77 @@ article#tab16 div ul li img {   margin: 0 auto 1em auto; max-width: 75%; padding
 #coupon-cancel, coupon-apply {
     border-left: solid 2px #fff;
 }
+
+
+
+/* beautify my recommended products */
+
+#pi-webRecommend {
+    border: solid 3px #cfc9c3;
+    background: #fff;
+    width: 100%;
+    font-family: helvetica;
+    padding: 1em 0 3em 0;
+}
+
+.igo_boxhead h2 {
+    text-align: center;
+    font-size: 2em;
+    padding: 0.5em 0.5em 0 0;
+    text-transform: capitalize;
+    font-family: helvetica;
+}
+
+.igo_boxbody {
+    max-width: 960px;
+    margin: 0 auto;
+    /* border: red solid 1px; */
+}
+
+.igo_product {
+    width: 200px;
+    border: solid 1px #ccc;
+    overflow: hidden;
+    height: auto;
+    float: left;
+    padding: 1em;
+    text-align: center;
+    font-size: 13px;
+    min-height: 300px;
+    margin: 1% 2% 3% 2%;
+}
+
+img.igo_product_image {
+    width: 100%;
+}
+
+span.igo_product_product_name_label {
+    display: none;
+}
+
+span.igo_product_product_name_value {
+    display: none;
+}
+
+span.igo_product_regular_price_value {
+    text-decoration: line-through;
+}
+
+span.igo_product_sale_price_value {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+   .igo_boxbody { width: 90%;}
+   .igo_product { margin: 1em; float: left; width: 190px;}
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 667px) { 
+   .igo_product { margin: 1em auto 2em; float: none; width: 210px;}
+}
