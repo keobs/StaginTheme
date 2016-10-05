@@ -70,3 +70,6 @@
 <?php else: ?>
     <?php echo $this->getProductListHtml() ?>
 <?php endif; ?>
+
+<!-- cms block for pi code -->
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('custom_block_id')->toHtml() ?>
