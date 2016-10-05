@@ -77,8 +77,8 @@ jQuery(document).ready(function () {
     // if sale price is $0.00 hide it 
     jQuery(".igo_product_sale_price_value:contains('$0.00')").hide();
     // if prices are the same add class to hide sale price
-    if ( jQuery(".original").text() == jQuery(".sale").text() ) {
-    jQuery("span.sale").addClass('hideMe');
+    if ( jQuery(".igo_product_regular_price_value").text() == jQuery(".igo_product_sale_price_value").text() ) {
+    jQuery("span.igo_product_sale_price_value").addClass('hideMe');
     
     }
 });
