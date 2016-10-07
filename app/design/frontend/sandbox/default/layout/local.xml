@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<!-- Skeleton & Reset | New Lighweight  Framewok -->
+	<action method="addCss"><stylesheet>css/normalize.css</stylesheet></action>
+	<action method="addCss"><stylesheet>css/skeleton.css</stylesheet></action>
