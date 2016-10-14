@@ -3592,7 +3592,7 @@ a.skip-link {
     border: solid 1px #cccccc;
     position: absolute;
     left: 0;
-    top: 30px;
+    top: 15px;
     /* Height of ".nav-primary a.level0" */
     z-index: 10;
     width: 250px;
