@@ -10610,11 +10610,11 @@ div.calendar table td.button {
 p.welcome-msg {color:#fff; font-weight:bold; font-size:12px; letter-spacing:1px; margin: 0;} 
 
 .page-title.category-title {
-    float: none;
     width: 100%;
     text-align: center;
     margin: 2em 0 1em 0;
-}
+} 
+
 .category-products { clear: both; padding-top: 0;}
 .catBannerImg {float: right;    width: 75%;}
 .catBannerImg img { max-width: 100%;}
