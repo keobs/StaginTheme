@@ -10609,13 +10609,18 @@ div.calendar table td.button {
 /* css v2 */
 p.welcome-msg {color:#fff; font-weight:bold; font-size:12px; letter-spacing:1px; margin: 0;} 
 
-.page-title.category-title {float: left;  width: 22.333%;}
+.page-title.category-title {
+    float: none;
+    width: 100%;
+    text-align: center;
+    margin: 2em 0 1em 0;
+}
 .category-products { clear: both; padding-top: 0;}
 .catBannerImg {float: right;    width: 75%;}
 .catBannerImg img { max-width: 100%;}
 .category-description.std {font-size: 12px;} 
 
-.breadcrumbs {background: #f0f0f0; padding: 3px 0 2px 5px;}
+.breadcrumbs { padding: 3px 0 2px 5px;}
 .breadcrumbs li {font-size: 10px;}
 
 @media only screen and (min-width: 480px) {
