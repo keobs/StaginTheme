@@ -2710,7 +2710,7 @@ input:-moz-placeholder {
 .radio {
   position: relative;
   top: -1px;
-  display: inline-block;
+  display: block;
 }
 
 .checkbox + label,
@@ -11093,9 +11093,10 @@ td:last-child {
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-button,
-.button {
-  margin-bottom: 1rem; }
+/*
+button, .button {  margin-bottom: 1rem; }
+*/
+
 input,
 textarea,
 select,
@@ -11402,3 +11403,13 @@ there.
   .popover-item:first-child .popover-link:hover:after {
     border-bottom-color: #33C3F0; }
 }
+
+
+/* more custom styles */
+
+h1.typeLabel {
+    background: #efefef;
+    padding: 0.2em;
+    text-align: center;
+}
+
