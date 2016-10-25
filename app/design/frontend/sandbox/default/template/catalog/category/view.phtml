@@ -70,23 +70,3 @@
 <?php else: ?>
     <?php echo $this->getProductListHtml() ?>
 <?php endif; ?>
-
-
-<!-- cms block for pi code -->
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('catalog_pi_recommend')->toHtml() ?>
-
-
-<!-- Hide 0.00 sale price -->
-<script type="text/javascript">
-jQuery(document).ready(function () {
-    if ( jQuery(".igo_product_regular_price_value").text() == jQuery(".igo_product_sale_price_value").text() ) {
-    jQuery("span.igo_product_sale_price_value").hide();
-    }
-});
-</script>
-
-<script type="text/javascript">
-jQuery(document).ready(function () {
-   jQuery(".igo_product_sale_price_value:contains('$0.00')").hide();
-});
-</script>
